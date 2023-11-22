@@ -1,9 +1,13 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Animal {
     // Atributos
     private int idAnimal;
     private String nomeAnimal;
     private String especie;
     private String coloracao;
+    public static List<Integer> listaIDs = new ArrayList<>();
 
     // Construtores
     public Animal() {
@@ -14,6 +18,7 @@ public class Animal {
         this.nomeAnimal = nomeAnimal;
         this.especie = especie;
         this.coloracao = coloracao;
+        listaIDs.add(idAnimal);
     }
 
     // Getters e setters

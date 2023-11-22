@@ -49,8 +49,28 @@ public class Main {
                                                                         
                                         """);
 
+                                int idPadrinho;
+                                boolean idEncontrado = false;
+                                while (true) {
+                                    idPadrinho = coletarInt("Digite o ID do padrinho: ");
+
+                                    for (Integer id : Pessoa.listaIDs) {
+                                        if (id == idPadrinho) {
+                                            System.out.println("ID repetido. Por favor, digite outro número.");
+                                            idEncontrado = true;
+                                            break;
+                                        }
+                                    }
+
+                                    if (!idEncontrado) {
+                                        break; // Sair do loop se o ID não estiver presente na lista
+                                    } else {
+                                        idEncontrado = false; // Resetar a variável para a próxima iteração
+                                    }
+                                }
+
                                 Pessoa p1 = new Pessoa(
-                                        coletarInt("Digite o ID do padrinho: "),
+                                        idPadrinho,
                                         coletarString("Digite o nome do padrinho: "),
                                         coletarString("Digite a cidade do padrinho: "),
                                         coletarString("Digite o estado do padrinho: "),
@@ -186,9 +206,29 @@ public class Main {
                                             
                                             """);
 
+                                int idAnimal;
+                                boolean idEncontrado = false;
+                                while (true) {
+                                    idAnimal = coletarInt("Digite o ID do padrinho: ");
+
+                                    for (Integer id : Animal.listaIDs) {
+                                        if (id == idAnimal) {
+                                            System.out.println("ID repetido. Por favor, digite outro número.");
+                                            idEncontrado = true;
+                                            break;
+                                        }
+                                    }
+
+                                    if (!idEncontrado) {
+                                        break; // Sair do loop se o ID não estiver presente na lista
+                                    } else {
+                                        idEncontrado = false; // Resetar a variável para a próxima iteração
+                                    }
+                                }
+
 
                                 Animal a1 = new Animal(
-                                        coletarInt("Digite o ID do pet: "),
+                                        idAnimal,
                                         coletarString("Digite o nome do pet: "),
                                         coletarString("Digite a espécie do pet: "),
                                         coletarString("Digite a coloração do pet: ")
