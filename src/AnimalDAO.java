@@ -5,10 +5,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class AnimalDAO {
-    private Connection connection;
+    private final Connection connection;
 
     public AnimalDAO() {
-        this.connection = new Conexao().GeraConexao();
+        this.connection = Conexao.GeraConexao();
     }
 
 //    private boolean animalJaExiste(int idAnimal) {
@@ -50,7 +50,7 @@ public class AnimalDAO {
     // Read
     public ArrayList<Animal> listar() {
         ArrayList<Animal> animais = new ArrayList<>();
-        String sql = "SELECT id_animal, nome_animal, especie, coloracao FROM animais";
+        String sql = "SELECT * FROM animais";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             ResultSet resultSet = stmt.executeQuery();
@@ -72,7 +72,7 @@ public class AnimalDAO {
 
     // Read por ID
     public Animal buscarPorId(int idAnimal) {
-        String sql = "SELECT id_animal, nome_animal, especie, coloracao FROM animais WHERE id_animal = ?";
+        String sql = "SELECT * FROM animais WHERE id_animal = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, idAnimal);
@@ -94,6 +94,7 @@ public class AnimalDAO {
             throw new RuntimeException(e);
         }
     }
+
 
     // Update
     public void atualiza(Animal animal) {

@@ -1,7 +1,10 @@
 import java.util.ArrayList;
+import java.util.List;
+
 import static Coletar.Coletar.*;
 
 public class Main {
+
     public static void main(String[] args) {
 
         boolean flagMenu1 = false;
@@ -49,25 +52,7 @@ public class Main {
                                                                         
                                         """);
 
-                                int idPadrinho;
-                                boolean idEncontrado = false;
-                                while (true) {
-                                    idPadrinho = coletarInt("Digite o ID do padrinho: ");
-
-                                    for (Integer id : Pessoa.listaIDs) {
-                                        if (id == idPadrinho) {
-                                            System.out.println("ID repetido. Por favor, digite outro número.");
-                                            idEncontrado = true;
-                                            break;
-                                        }
-                                    }
-
-                                    if (!idEncontrado) {
-                                        break; // Sair do loop se o ID não estiver presente na lista
-                                    } else {
-                                        idEncontrado = false; // Resetar a variável para a próxima iteração
-                                    }
-                                }
+                                int idPadrinho = confereID(Pessoa.listaIDs);
 
                                 Pessoa p1 = new Pessoa(
                                         idPadrinho,
@@ -136,8 +121,6 @@ public class Main {
                                                                         
                                         """);
 
-
-                                System.out.print("Digite o ID do padrinho a ser atualizdo: ");
                                 int idAtualizaPessoa = coletarInt
                                         ("Digite o ID do padrinho a ser atualizdo: ");
 
@@ -158,7 +141,6 @@ public class Main {
                                         =========================
                                                                         
                                         """);
-
 
                                 int idExcluirPessoa = coletarInt
                                         ("Digite o ID do padrinho a ser excluído: ");
@@ -193,39 +175,19 @@ public class Main {
                                             
                                             """);
 
-
                         int escolhaMenu3 = coletarInt
                                 ("Sua escolha: ", 1, 6);
 
                         switch (escolhaMenu3) {
-                            case 1:
+                            case 1 -> {
                                 System.out.println("""
-                                            =========================
-                                            CADASTRAR PET
-                                            =========================
-                                            
-                                            """);
+                                        =========================
+                                        CADASTRAR PET
+                                        =========================
+                                                                                    
+                                        """);
 
-                                int idAnimal;
-                                boolean idEncontrado = false;
-                                while (true) {
-                                    idAnimal = coletarInt("Digite o ID do padrinho: ");
-
-                                    for (Integer id : Animal.listaIDs) {
-                                        if (id == idAnimal) {
-                                            System.out.println("ID repetido. Por favor, digite outro número.");
-                                            idEncontrado = true;
-                                            break;
-                                        }
-                                    }
-
-                                    if (!idEncontrado) {
-                                        break; // Sair do loop se o ID não estiver presente na lista
-                                    } else {
-                                        idEncontrado = false; // Resetar a variável para a próxima iteração
-                                    }
-                                }
-
+                                int idAnimal = confereID(Animal.listaIDs);
 
                                 Animal a1 = new Animal(
                                         idAnimal,
@@ -236,15 +198,14 @@ public class Main {
 
                                 AnimalDAO ad1 = new AnimalDAO();
                                 ad1.adiciona(a1);
-
-                                break;
-                            case 2:
+                            }
+                            case 2 -> {
                                 System.out.println("""
-                                                    =========================
-                                                    LISTAR PETS
-                                                    =========================
-                                                    
-                                                    """);
+                                        =========================
+                                        LISTAR PETS
+                                        =========================
+                                                                                            
+                                        """);
 
 
                                 AnimalDAO ad2 = new AnimalDAO();
@@ -257,15 +218,14 @@ public class Main {
                                             ", Coloração: " + animal.getColoracao());
                                 }
 
-                                break;
-                            case 3:
+                            }
+                            case 3 -> {
                                 System.out.println("""
-                                                    =========================
-                                                    PESQUISAR PET
-                                                    =========================
-                                                    
-                                                    """);
-
+                                        =========================
+                                        PESQUISAR PET
+                                        =========================
+                                                                                            
+                                        """);
 
                                 int idBuscaAnimal = coletarInt
                                         ("Digite o ID do pet: ");
@@ -282,15 +242,14 @@ public class Main {
                                     System.out.println("Pet não encontrado.");
                                 }
 
-                                break;
-                            case 4:
+                            }
+                            case 4 -> {
                                 System.out.println("""
-                                                    =========================
-                                                    ATUALIZAR CADASTRO DE PET
-                                                    =========================
-                                                    
-                                                    """);
-
+                                        =========================
+                                        ATUALIZAR CADASTRO DE PET
+                                        =========================
+                                                                                            
+                                        """);
 
                                 int idAtualizaAnimal = coletarInt
                                         ("Digite o ID do pet a ser atualizado: ");
@@ -304,15 +263,14 @@ public class Main {
                                     ad4.atualiza(animalAtt);
                                 }
 
-                                break;
-                            case 5:
+                            }
+                            case 5 -> {
                                 System.out.println("""
-                                                    =========================
-                                                    EXCLUIR CADASTRO DE PET
-                                                    =========================
-                                                    
-                                                    """);
-
+                                        =========================
+                                        EXCLUIR CADASTRO DE PET
+                                        =========================
+                                                                                            
+                                        """);
 
                                 int idExcluirPet = coletarInt
                                         ("Digite o ID do pet a ser excluído:");
@@ -321,13 +279,11 @@ public class Main {
 
                                 ad5.exclui(idExcluirPet);
 
-                                break;
-                            case 6:
+                            }
+                            case 6 -> {
                                 System.out.println("Voltando para o menu anterior");
                                 flagMenu3 = true;
-                                break;
-                            default:
-                                System.out.println("Escolha dentre as opções do menu");
+                            }
                         }
                     } while (!flagMenu3);
 
@@ -360,7 +316,6 @@ public class Main {
                                         =========================
                                                                                     
                                         """);
-
 
                                 Apadrinhamento ap = new Apadrinhamento();
 
@@ -449,7 +404,6 @@ public class Main {
                                                                                     
                                         """);
 
-
                                 int idBuscaApadrinhamento = coletarInt
                                         ("Digite o ID do apadrinhamento: ");
 
@@ -517,5 +471,34 @@ public class Main {
                 }
             }
         }
+
+        fecharScanner();
+    }
+
+    public static int confereID(List<Integer> listaIDs) {
+        // percorre as listas listaIDs pra ver se a ID foi repetida.
+
+        int teste_id;
+        boolean idEncontrado = false;
+
+        while (true) {
+            teste_id = coletarInt("Digite o ID: ");
+
+            for (Integer id : listaIDs) {
+                if (id == teste_id) {
+                    System.out.println("ID repetido. Por favor, digite outro número.");
+                    idEncontrado = true;
+                    break;
+                }
+            }
+
+            if (!idEncontrado) {
+                break; // Sair do loop se o ID não estiver presente na lista
+            } else {
+                idEncontrado = false; // Resetar a variável para a próxima iteração
+            }
+        }
+
+        return teste_id;
     }
 }
