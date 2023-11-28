@@ -70,17 +70,7 @@ public class Main {
                                                                         
                                         """);
 
-                                PessoaDAO pd2 = new PessoaDAO();
-
-                                ArrayList<Pessoa> pessoas = pd2.listar();
-                                for (Pessoa pessoa : pessoas) {
-                                    System.out.println("ID: " + pessoa.getIdPessoa() +
-                                            ", Nome: " + pessoa.getNomePessoa() +
-                                            ", Cidade: " + pessoa.getCidade() +
-                                            ", Estado: " + pessoa.getEstado() +
-                                            ", E-mail: " + pessoa.getEmail() +
-                                            ", Whatsapp: " + pessoa.getWhatsapp());
-                                }
+                                Pessoa.listarPessoas();
 
                             }
                             case 3 -> {
@@ -213,15 +203,7 @@ public class Main {
                                         """);
 
 
-                                AnimalDAO ad2 = new AnimalDAO();
-
-                                ArrayList<Animal> animais = ad2.listar();
-                                for (Animal animal : animais) {
-                                    System.out.println("ID: " + animal.getIdAnimal() +
-                                            ", Nome: " + animal.getNomeAnimal() +
-                                            ", Espécie: " + animal.getEspecie() +
-                                            ", Coloração: " + animal.getColoracao());
-                                }
+                                        Animal.listarAnimais();
 
                             }
                             case 3 -> {
@@ -324,59 +306,35 @@ public class Main {
 
                                 Apadrinhamento ap = new Apadrinhamento();
 
-                                ap.setIdApadrinhamento(coletarInt
-                                        ("Digite o ID do apadrinhamento: "));
-                                System.out.print("Digite a quantia mensal: ");
                                 ap.setQuantiaMensal(coletarDouble
                                         ("Digite a quantia mensal: "));
 
                                 PessoaDAO pd = new PessoaDAO();
                                 ArrayList<Pessoa> pessoas = pd.listar();
+                                Pessoa.listarPessoas();
 
-                                boolean flagId = false;
-                                int contador = 0;
-                                do {
-                                    int idPadrinho = coletarInt
-                                            ("Digite o ID do padrinho: ");
+                                int idPadrinho = coletarInt
+                                        ("Digite o ID do padrinho: ", 1, pessoas.size());
 
-                                    for (Pessoa p : pessoas) {
-                                        if (p.getIdPessoa() == idPadrinho) {
-                                            ap.setPessoa(p);
-                                            flagId = true;
-                                            break;
-                                        } else {
-                                            contador++;
-                                        }
-
-                                        if (contador == pessoas.size()) {
-                                            System.out.println("ID não encontrado. Tente novamente.");
-                                        }
+                                for (Pessoa p : pessoas) {
+                                    if (p.getIdPessoa() == idPadrinho) {
+                                        ap.setPessoa(p);
                                     }
-                                } while (!flagId);
+                                }
 
                                 AnimalDAO ad = new AnimalDAO();
                                 ArrayList<Animal> animais = ad.listar();
 
-                                flagId = false;
-                                contador = 0;
-                                do {
-                                    int idPet = coletarInt
-                                            ("Digite o ID do pet: ");
+                                Animal.listarAnimais();
 
-                                    for (Animal a : animais) {
-                                        if (a.getIdAnimal() == idPet) {
-                                            ap.setAnimal(a);
-                                            flagId = true;
-                                            break;
-                                        } else {
-                                            contador++;
-                                        }
+                                int idPet = coletarInt
+                                        ("Digite o ID do pet: ", 1, animais.size());
 
-                                        if (contador == pessoas.size()) {
-                                            System.out.println("ID não encontrado. Tente novamente.");
-                                        }
+                                for (Animal a : animais) {
+                                    if (a.getIdAnimal() == idPet) {
+                                        ap.setAnimal(a);
                                     }
-                                } while (!flagId);
+                                }
 
                                 ApadrinhamentoDAO apd = new ApadrinhamentoDAO();
                                 apd.adiciona(ap);

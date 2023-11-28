@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public abstract class Animal {
     // Atributos
@@ -40,5 +41,17 @@ public abstract class Animal {
 
     public void setColoracao(String coloracao) {
         this.coloracao = coloracao;
+    }
+
+    public static void listarAnimais() {
+        AnimalDAO ad2 = new AnimalDAO();
+
+        ArrayList<Animal> animais = ad2.listar();
+        for (Animal animal : animais) {
+            System.out.println("ID: " + animal.getIdAnimal() +
+                    ", Nome: " + animal.getNomeAnimal() +
+                    ", Espécie: " + animal.getEspecie() +
+                    ", Coloração: " + animal.getColoracao());
+        }
     }
 }

@@ -14,13 +14,12 @@ public class ApadrinhamentoDAO {
     // Create
     public void adiciona(Apadrinhamento apadrinhamento) {
 
-        String sql = "INSERT INTO apadrinhamento(id_apadrinhamento, quantia_mensal, id_pessoa, id_animal) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO apadrinhamento(quantia_mensal, id_pessoa, id_animal) VALUES(?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, apadrinhamento.getIdApadrinhamento());
-            stmt.setDouble(2, apadrinhamento.getQuantiaMensal());
-            stmt.setInt(3, apadrinhamento.pegarIdInstanciaPessoa());
-            stmt.setInt(4, apadrinhamento.pegarIdInstanciaAnimal());
+            stmt.setDouble(1, apadrinhamento.getQuantiaMensal());
+            stmt.setInt(2, apadrinhamento.pegarIdInstanciaPessoa());
+            stmt.setInt(3, apadrinhamento.pegarIdInstanciaAnimal());
             stmt.execute();
             stmt.close();
             System.out.println("Apadrinhamento cadastrado com sucesso.");
