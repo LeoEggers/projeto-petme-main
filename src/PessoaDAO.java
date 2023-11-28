@@ -5,30 +5,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PessoaDAO {
-    private final Connection connection;
+    private Connection connection;
 
     public PessoaDAO() {
-        this.connection = Conexao.GeraConexao();
+        this.connection = new Conexao().GeraConexao();
     }
-
-//    private boolean pessoaJaExiste(int idPessoa) {
-//        String sql = "SELECT COUNT(*) FROM pessoas WHERE id_pessoa = ?";
-//        try {
-//            PreparedStatement stmt = connection.prepareStatement(sql);
-//            stmt.setInt(1, idPessoa);
-//            ResultSet resultSet = stmt.executeQuery();
-//            int count = resultSet.getInt(1);
-//            stmt.close();
-//            return count > 0;
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
 
     // Create
     public void adiciona(Pessoa pessoa) {
-//        if (pessoaJaExiste(pessoa.getIdPessoa())) { System.out.println("Pessoa com ID " + pessoa.getIdPessoa() + " já existe na tabela."); return;
-//        }
 
         String sql = "INSERT INTO pessoas(nome_pessoa, cidade, estado, email, whatsapp) VALUES(?,?,?,?,?)";
         try {
@@ -55,13 +39,13 @@ public class PessoaDAO {
             ResultSet resultSet = stmt.executeQuery();
             while (resultSet.next()) {
                 Pessoa pessoa = new Pessoa(
-                        resultSet.getInt("id_pessoa"),
                         resultSet.getString("nome_pessoa"),
                         resultSet.getString("cidade"),
                         resultSet.getString("estado"),
                         resultSet.getString("email"),
                         resultSet.getString("whatsapp")
                         );
+                pessoa.setIdPessoa(resultSet.getInt("id_pessoa"));
 
                 pessoas.add(pessoa);
             }
@@ -81,13 +65,14 @@ public class PessoaDAO {
             ResultSet resultSet = stmt.executeQuery();
             if (resultSet.next()) {
                 Pessoa pessoa = new Pessoa(
-                        resultSet.getInt("id_pessoa"),
                         resultSet.getString("nome_pessoa"),
                         resultSet.getString("cidade"),
                         resultSet.getString("estado"),
                         resultSet.getString("email"),
                         resultSet.getString("whatsapp")
                 );
+                pessoa.setIdPessoa(resultSet.getInt("id_pessoa"));
+
                 stmt.close();
                 return pessoa;
             } else {

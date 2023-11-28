@@ -11,25 +11,8 @@ public class ApadrinhamentoDAO {
         this.connection = Conexao.GeraConexao();
     }
 
-//    private boolean apadrinhamentoJaExiste(int idApadrinhamento) {
-//        String sql = "SELECT COUNT(*) FROM apadrinhamento WHERE id_apadrinhamento = ?";
-//        try {
-//            PreparedStatement stmt = connection.prepareStatement(sql);
-//            stmt.setInt(1, idApadrinhamento);
-//            ResultSet resultSet = stmt.executeQuery();
-//            int count = resultSet.getInt(1);
-//            stmt.close();
-//            return count > 0;
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-
     // Create
     public void adiciona(Apadrinhamento apadrinhamento) {
-//        if (apadrinhamentoJaExiste(apadrinhamento.getIdApadrinhamento())) { System.out.println("Apadrinhamento com ID " + apadrinhamento.getIdApadrinhamento() + " já existe na tabela.");
-//            return;
-//        }
 
         String sql = "INSERT INTO apadrinhamento(id_apadrinhamento, quantia_mensal, id_pessoa, id_animal) VALUES(?,?,?,?)";
         try {

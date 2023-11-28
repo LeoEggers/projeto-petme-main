@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
 
 public class Pessoa {
     // Atributos
@@ -9,23 +7,17 @@ public class Pessoa {
     private String estado;
     private String email;
     private String whatsapp;
-    public static List<Integer> listaIDs = new ArrayList<>();
 
     // Construtores
     public Pessoa() {
     }
 
-
-    public Pessoa(int idPessoa, String nomePessoa, String cidade, String estado, String email, String whatsapp) {
-        this.idPessoa = idPessoa;
+    public Pessoa(String nomePessoa, String cidade, String estado, String email, String whatsapp) {
         this.nomePessoa = nomePessoa;
         this.cidade = cidade;
         this.estado = estado;
         this.email = email;
         this.whatsapp = whatsapp;
-
-        // gera lista de IDs para permitir consulta.
-        listaIDs.add(idPessoa);
 
     }
 

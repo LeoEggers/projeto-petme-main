@@ -176,6 +176,21 @@ public class Coletar {
         }
     }
 
+    public static String coletarString(String mensagemDeExibicao, int tamanhoDaString) {
+        String string;
+
+        while (true) {
+            System.out.println(mensagemDeExibicao);
+            string = sc.nextLine().trim();
+
+            if (string.length() == tamanhoDaString) {
+                return string;
+            } else {
+                System.out.println("Tente novamente. A entrada deve ter exatamente " + tamanhoDaString + " caracteres.");
+            }
+        }
+    }
+
     public static void fecharScanner(){
         sc.close();
     }

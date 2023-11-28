@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 
 import static Coletar.Coletar.*;
 
@@ -52,13 +51,10 @@ public class Main {
                                                                         
                                         """);
 
-                                int idPadrinho = confereID(Pessoa.listaIDs);
-
                                 Pessoa p1 = new Pessoa(
-                                        idPadrinho,
                                         coletarString("Digite o nome do padrinho: "),
                                         coletarString("Digite a cidade do padrinho: "),
-                                        coletarString("Digite o estado do padrinho: "),
+                                        coletarString("Digite o estado do padrinho: ", 2),
                                         coletarString("Digite o e-mail do padrinho: "),
                                         coletarString("Digite o Whatsapp do padrinho: ")
                                 );
@@ -187,14 +183,23 @@ public class Main {
                                                                                     
                                         """);
 
-                                int idAnimal = confereID(Animal.listaIDs);
+                                int especie = coletarInt
+                                        ("""
+                                                1. Cachorro
+                                                2. Gato
 
-                                Animal a1 = new Animal(
-                                        idAnimal,
-                                        coletarString("Digite o nome do pet: "),
-                                        coletarString("Digite a espécie do pet: "),
-                                        coletarString("Digite a coloração do pet: ")
-                                );
+                                                Sua resposta:""",1, 2);
+
+                                Animal a1;
+
+                                if (especie == 1) {
+                                    a1 = new Cachorro();
+                                } else {
+                                    a1 = new Gato();
+                                }
+
+                                a1.setNomeAnimal(coletarString("Digite o nome: "));
+                                a1.setColoracao(coletarString("Digite a coloração: "));
 
                                 AnimalDAO ad1 = new AnimalDAO();
                                 ad1.adiciona(a1);
@@ -473,32 +478,5 @@ public class Main {
         }
 
         fecharScanner();
-    }
-
-    public static int confereID(List<Integer> listaIDs) {
-        // percorre as listas listaIDs pra ver se a ID foi repetida.
-
-        int teste_id;
-        boolean idEncontrado = false;
-
-        while (true) {
-            teste_id = coletarInt("Digite o ID: ");
-
-            for (Integer id : listaIDs) {
-                if (id == teste_id) {
-                    System.out.println("ID repetido. Por favor, digite outro número.");
-                    idEncontrado = true;
-                    break;
-                }
-            }
-
-            if (!idEncontrado) {
-                break; // Sair do loop se o ID não estiver presente na lista
-            } else {
-                idEncontrado = false; // Resetar a variável para a próxima iteração
-            }
-        }
-
-        return teste_id;
     }
 }
