@@ -3,8 +3,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 public class AnimalDAO {
     private final Connection connection;
@@ -33,7 +31,6 @@ public class AnimalDAO {
     // Read
     public ArrayList<Animal> listar() {
         ArrayList<Animal> animais = new ArrayList<>();
-        Set<Integer> id_animais = new LinkedHashSet<>();
 
         String sql = "SELECT * FROM animais";
         try {
@@ -52,7 +49,6 @@ public class AnimalDAO {
                 animal.setIdAnimal(resultSet.getInt("id_animal"));
 
                 animais.add(animal);
-                id_animais.add(resultSet.getInt("id_animal"));
             }
             stmt.close();
         } catch (SQLException e) {
